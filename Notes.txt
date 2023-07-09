@@ -1,0 +1,19 @@
+* Lombok - java library :->
+ 1. reduces boiler plate code
+ 2. give concise and clear code
+ 3. save time and money
+ 4. minimize human errors
+
+ POJO :-> Plain  Old Java Object
+ 1. class should be public
+ 2. all variables should be private
+ 3. public getters and setters
+ 4. should have default constructor and it may have parameterized constructor
+
+ Serialization : Process of conversion POJO into json
+ Deserialization : Process of conversion of json into POJO
+
+ dependencies:
+ 1. jackson-databind: facilitates serialization and deserialization .ex . it provides Object mapper
+ 2. lombok : provides annotations for Getter , Setters and Builders . reduces the code size
+ 3  commons-lang3 : generates random values

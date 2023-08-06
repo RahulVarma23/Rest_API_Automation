@@ -1,5 +1,6 @@
 package org.javarevision.lombok.builders;
 
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,4 +10,5 @@ public class Address {
     String street;
     int pin;
     String city;
+    String shipDate;
 }

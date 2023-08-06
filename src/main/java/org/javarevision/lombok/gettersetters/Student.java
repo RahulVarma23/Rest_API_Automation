@@ -1,6 +1,6 @@
-package org.javarevision.lombok;
+package org.javarevision.lombok.gettersetters;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
 public class Student {

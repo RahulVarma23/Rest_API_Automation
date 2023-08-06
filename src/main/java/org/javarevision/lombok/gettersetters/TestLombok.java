@@ -1,4 +1,4 @@
-package org.javarevision.lombok;
+package org.javarevision.lombok.gettersetters;
 
 public class TestLombok {
 

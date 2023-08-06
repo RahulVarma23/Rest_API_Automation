@@ -12,7 +12,7 @@ public class RandomUtils {
         return Integer.parseInt(RandomStringUtils.random(charCount, false, true));
     }
 
-    public static long generateRandomAlphaNumericValue (int charCount){
-        return Long.parseLong(RandomStringUtils.random(charCount, true, true));
+    public static String generateRandomAlphaNumericValue (int charCount){
+        return RandomStringUtils.random(charCount, true, true);
     }
 }

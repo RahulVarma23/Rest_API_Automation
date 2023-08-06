@@ -8,9 +8,9 @@ import java.util.List;
 @Data
 @Builder
 public class Student {
-    String name;
-    int age;
-    List<Address> address;
-    String department;
-    List<String> names;
+    private String name;
+    private int age;
+    private List<Address> address;
+    private String department;
+    private List<String> names;
 }

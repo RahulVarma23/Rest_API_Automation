@@ -9,10 +9,11 @@ import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.Assertions;
 import org.javarevision.constructors.Employee;
 import org.testng.annotations.Test;
+
 import static org.javarevision.utils.RandomUtils.generateRandomIntValue;
 import static org.javarevision.utils.RandomUtils.generateRandomStringValue;
 
-public class PostEmployee {
+public class PutEmployee {
 
     private static final String BASE_URI = "https://dummy.restapiexample.com/api/v1";
     RequestSpecification requestSpecification;
@@ -20,7 +21,7 @@ public class PostEmployee {
     JsonPath jsonPath;
 
     @Test
-    public void createEmployee() {
+    public void updateEmployeeDetails() {
 //        Employee employee = new Employee("ansjdjl" , 20, 1000);
 //
 //        Map<Object, Object> map = new HashMap<>();
@@ -34,40 +35,25 @@ public class PostEmployee {
 //                .salary(generateRandomIntValue(5))
 //                .build();
 
-        Employee employee = Employee.getDefaultEmployeeBuilder().name(generateRandomStringValue(51)).build();
+        String name = "Laxman";
+        //Employee employee = Employee.getDefaultSalaryBuilder().salary(10000).build();
+
+        Employee e1 = Employee.getDefaultNameBuilder().name(name).build();
 
         requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(BASE_URI)
-                .setBasePath("/create")
-                .setBody(employee)
+                .setBasePath("/update/1")
+                .setBody(e1)
                 .setContentType(ContentType.JSON)
                 .build();
 
-         response = RestAssured.given().spec(requestSpecification).log().all().when().post().then().log().all().extract().response();
+         response = RestAssured.given().spec(requestSpecification).log().all().when().put().then().log().all().extract().response();
         Assertions.assertThat(response.getStatusCode()).isEqualTo(200);
 
-        jsonPath = response.jsonPath();
-        jsonPath.getInt("data.age");
-        jsonPath.getInt("data.salary");
+        JsonPath jsonPath = response.jsonPath();
+
         jsonPath.getString("data.name");
 
-        Assertions.assertThat(jsonPath.getInt("data.age")).isEqualTo(employee.getAge());
-        Assertions.assertThat(jsonPath.getInt("data.salary")).isEqualTo(employee.getSalary());
-        Assertions.assertThat(jsonPath.getString("data.name")).isEqualTo(employee.getName());
-
-        int id = jsonPath.getInt("data.id");
-
-        requestSpecification = new RequestSpecBuilder()
-                .setBaseUri(BASE_URI)
-                .setBasePath("/employee/"+id)
-                .build();
-
-        response = RestAssured.given().spec(requestSpecification).log().all().when().get().then().log().all().extract().response();
-
-        Assertions.assertThat(response.getStatusCode()).isEqualTo(200);
-
-        jsonPath = response.jsonPath();
-        int actualIdFromResponse =  jsonPath.getInt("data.id");
-        Assertions.assertThat(actualIdFromResponse).isEqualTo(id);
+        Assertions.assertThat(jsonPath.getString("data.name")).isEqualTo(name);
     }
 }

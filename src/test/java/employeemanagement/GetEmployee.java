@@ -106,11 +106,16 @@ public class GetEmployee {
 
     @Test
     public void shouldGetEmployeeById() {
+        String id = "1";
         requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(BASE_URI)
-                .setBasePath("/employee/1")
+                .setBasePath("/employee/"+id)
                 .build();
         Response response = given().spec(requestSpecification).log().all().when().get().then().log().all().extract().response();
         Assertions.assertThat(response.getStatusCode()).isEqualTo(200);
+
+        JsonPath jsonPath = response.jsonPath();
+        int ans=  jsonPath.getInt("data.id");
+        Assertions.assertThat(ans).isEqualTo(Integer.parseInt(id));
     }
 }

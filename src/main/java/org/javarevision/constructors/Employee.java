@@ -17,7 +17,6 @@ public class Employee {
     private int age;
     private int salary;
 
-    @Builder
     public static EmployeeBuilder getDefaultEmployeeBuilder() {
         return new EmployeeBuilder()
                 .name(generateRandomStringValue(6))
@@ -25,12 +24,12 @@ public class Employee {
                 .salary(generateRandomIntValue(5));
     }
 
-    @Builder
+
     public static EmployeeBuilder getDefaultSalaryBuilder() {
         return new EmployeeBuilder().salary(generateRandomIntValue(5));
     }
 
-    @Builder
+
     public static EmployeeBuilder getDefaultNameBuilder() {
         return new EmployeeBuilder().name(generateRandomStringValue(5));
     }

@@ -37,5 +37,10 @@ public class PatchRequest {
         jsonPath = response.jsonPath();
 
         Assertions.assertThat(jsonPath.getString("title")).isEqualTo(title);
+
+        response = RestAssured.given().spec(requestSpecification).log().all().when().get().then().log().all().extract().response();
+
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SC_OK);
+        Assertions.assertThat(response.jsonPath().getString("title")).isEqualTo(title);
     }
 }
